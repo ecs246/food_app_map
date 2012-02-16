@@ -1,0 +1,17 @@
+commit e116df9096672b248515dc861d3a1f54dfa2764e
+Author: e <ecs246@yahoo.com>
+Date:   Thu Feb 16 12:41:28 2012 -0500
+
+    yop
+
+diff --git a/app/controllers/admin/locations_controller.rb b/app/controllers/admin/locations_controller.rb
+index a4a81b8..8519e45 100644
+--- a/app/controllers/admin/locations_controller.rb
++++ b/app/controllers/admin/locations_controller.rb
+@@ -1,5 +1,5 @@
+ class Admin::LocationsController < ApplicationController
+   def index
+-    render :inline => "hello world "
++    render :inline => "hello world p"
+   end
+ end
