@@ -1,0 +1,16 @@
+
+
+<tr class="cat-item" id="tag-<%=category.id%>">
+  <td class="cell-name">
+    <strong>
+      <%=link_to raw("&#8212") * level + category.name, edit_admin_category_path(category) , :class=>'edit-link' %>
+    </strong>
+    <div class="item-action">
+      <%=link_to "edit", edit_admin_category_path(category) %> |
+      <a class="quick-edit" href="#">Quick Edit</a> |
+      <%= link_to 'Destroy', [:admin,category], :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+  </td>
+  <td><%=category.short_description%></td>
+  <td><%=category.id%></td>
+</tr>

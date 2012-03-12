@@ -1,7 +1,12 @@
 FoodMapApp::Application.routes.draw do
+
   namespace :admin do
     resources :locations
+    resources :vendors
+    resources :categories
   end
+  get '/admin', :to => 'admin#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

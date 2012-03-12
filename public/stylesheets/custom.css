@@ -1,0 +1,43 @@
+.headform {
+  display:inline;
+}
+
+select {
+  font-family:courier;
+}
+
+.nested-item {
+  padding-left: 1em;
+}
+
+
+
+.category .left {
+  float:left;
+  width:300px;
+}
+
+
+.category .right {
+  float: left;
+ 
+}
+
+.wrap {
+  width:760px;
+}
+
+.validation-error { 
+  color: red;
+}
+
+#map a:link {
+  text-decoration:none
+}
+
+#map td {
+  vertical-align:text-top;
+}
+.item-action {
+  visibility:hidden;
+}

@@ -10,6 +10,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'will_paginate' , '3.0.pre2'
 # Use unicorn as the web server
 # gem 'unicorn'
+gem "jquery-rails"
+
 
 # Deploy with Capistrano
 # gem 'capistrano'
