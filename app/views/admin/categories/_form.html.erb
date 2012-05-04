@@ -1,4 +1,4 @@
-<%= form_for(["admin",@category],:remote => true,:format => :json,:html=>{:id => 'create_category_form'}) do |f| %>
+<%= form_for(["admin",@category],:remote => remote,:format => format,:html=>{:id => 'create_category_form'}) do |f| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
@@ -14,9 +14,9 @@
   </div>  
   <div class="field"> 
     <%= f.label :parent %> <br/>
- 
-    <%= f.select(:parent_id, get_cat_opt(2)
-      ) %>
+
+
+    <%= f.select(:parent_id,options_for_select(@parent_categories_options,@default_parent_option))%>
       <!--%=get_cat_opt%-->
   
   </div> 

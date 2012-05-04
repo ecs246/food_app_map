@@ -1,10 +1,14 @@
 class Admin::CategoriesController < AdminController
+  include Admin::CategoriesHelper
   # GET /admin/categories
   # GET /admin/categories.xml
   
   def index
+    @category = Category.new
+    
     @categories = Category.find_all_by_parent_id(nil)
-
+    @parent_categories_options = get_category_options_array 
+    @default_parent_option = ""
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
@@ -35,20 +39,14 @@ class Admin::CategoriesController < AdminController
     end
   end
 
-  # GET /admin/categories/new
-  # GET /admin/categories/new.xml
-  def new
-    @category = Category.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @category }
-    end
-  end
 
   # GET /admin/categories/1/edit
   def edit
+    #@category = Category.include_sub_categories.find(params[:id])
     @category = Category.find(params[:id])
+    @parent_categories_options = get_edit_category_options_array(@category)   
+    #@parent_categories_options = []
+    @default_parent_option = @category.parent_id
   end
 
   # POST /admin/categories
@@ -84,15 +82,32 @@ class Admin::CategoriesController < AdminController
   # PUT /admin/categories/1
   # PUT /admin/categories/1.xml
   def update
+    
     @category = Category.find(params[:id])
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to([:admin,@category] ,:notice => 'Category was successfully updated.') }
+        format.html { redirect_to(admin_categories_url ,:notice => 'Category was successfully updated.') }
         format.xml  { head :ok }
+        format.json   do 
+        
+        level =  @category.parents_array.size
+        varb = render_to_string :partial => "item.html.erb",:locals => { :level => level, :category=>@category }
+        #varb = ""
+          render :json => {
+              :html=>varb,
+              :category=>@category.attributes,
+              :level => level
+              
+            }, 
+            :content_type => 'text/json',
+            :status => :created
+        end
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @category.errors, :status => :unprocessable_entity }
+        format.json { render :status=>:unprocessable_entity ,:json => @category.errors, :content_type => 'text/json' }
+
       end
     end
   end

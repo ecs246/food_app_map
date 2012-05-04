@@ -27,6 +27,91 @@
     <%= f.label :url %><br />
     <%= f.text_field :url %>
   </div>
+<table>
+  <tr>
+    <td>  
+      <div class="field">
+        <%= f.label :address %><br />
+        <%= f.text_area :address, :cols=>30,:rows=>3 %>
+        <input type="button" id="poplatlong" value="Populate Lat, Lon"/> 
+      </div>
+      <div class="field">
+        <%= f.label :latitude %><br />
+        <%= f.text_field :latitude %>
+      </div>
+      <div class="field">
+        <%= f.label :longitude %><br />
+        <%= f.text_field :longitude %>
+      </div>
+    </td>
+    <td>
+      <div id="map_canvas" style="width:300px; height:300px"></div> 
+    </td>
+  </tr>
+</table>  
+  <div class="field"> 
+    <table>
+      <tr>
+        <td>
+          <%= f.label "Available" %> <br/>
+          <ul id="available-categories">
+            <%=loop_all_categories do |category,level| %>
+            <li><span class="level"><%="-"*level%></span><%=category.name%> <a class="add-category" href="#">Add</a> 
+              <div class="hidden-value"><%= category.id%></div></li>
+            <%end%>  
+           
+          </ul>  
+        </td>
+        <td>
+          <%= f.label "Selected Categories" %> <br/>
+          <div id="selected-categories">
+              <%@vendor.categories.each do |category|%>
+                
+                <li><input name="vendor[category_ids][]" type="hidden" value="<%=category.id%>">
+                    <%=category.name%>
+                    
+                    <a class="remove-category" href="#">remove</a>
+                  </li>
+              <%end%>
+          </div>
+        </td>
+      </tr>
+    </table>  
+    
+   
+  
+  </div>
+<div id="gallery">
+  <table>
+    <tr>
+      <td id="search-cell">
+        <input type="text" value="" name="image_search"/>
+        <input type="button" value="Search" />
+        <ul id="image-results" class="connectedSortable">
+          <%@images.each do |image|%>
+          <li><img src="<%=image.thumbnail%>"><%=image.name%><div class="id hidden"><%=image.id%></div></li>
+          <%end%>
+          
+        </ul>
+      </td>
+      <td>
+    <div id="selected-div">
+        <ol id="selected-images" class="connectedSortable">
+          <%if @vendor.related_images.size == 0%>
+            <li>Drop Here</li>
+          <%else%>        
+            <%@vendor.related_images.each do |related|%>
+                     <%= render :partial => "/admin/related_images/related_image", :locals => { :related=>related } %>
+ 
+            <%end%>  
+          <%end%>        
+
+        </ol>
+    </div>  
+      </td>
+    </tr>  
+  </table>  
+</div>
   <div class="actions">
     <%= f.submit %>
   </div>

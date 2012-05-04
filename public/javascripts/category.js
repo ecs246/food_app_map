@@ -1,5 +1,47 @@
+myadmin.selectCat = function () {
+
+  var handleAddCategory = function () {
+   $('#available-categories').on('click','.add-category',function(event) {
+     
+     event.preventDefault() 
+     $item = $(this).closest('li');
+     val = $item.find('.hidden-value').text();
+     if ($('#selected-categories').find('input[value='+ val +']').length == 0) {
+      
+      $('#selected-categories').append($item.clone().find('a').attr('class','remove-category')
+      .text('remove').end().append($('<input type="hidden" name="vendor[category_ids][]">').attr('value',val)))
+     } else {
+       alert("Already Selected");
+     }
+ 
+    })
+  }  
+  
+  var handleRemoveCategory = function () {
+   $('#selected-categories').on('click','.remove-category',function(event) {
+     
+     event.preventDefault() 
+     $(this).closest('li').remove();
+
+ 
+    })
+  } 
+  
+  
+  return {
+    init : function() {
+      
+      
+      handleAddCategory();
+      handleRemoveCategory();
+    }
+  }
+}()///
+
 myadmin.cat=function() {
-  handleItemOver = function() {
+
+
+  var handleItemOver = function() {
     
     $('#map').on('hover','.cell-name',function(event) {
       var $actionDiv = $(this).find('.item-action:first')
@@ -10,17 +52,84 @@ myadmin.cat=function() {
       }
     })
   }
-  
-  handleQuickEditClick = function() {
-    $('.item-action').on('click','.quick-edit',function(event) {
-      event.preventDefault()
-      console.log($(this).closest('.cat-item'));
-      $(this).closest('.cat-item').hide()
+
+  var resetIndex = function() {
+     var $indexForm = $('#index-form')
+    $indexForm.find('.inline-edit').each(function(index,element) {
+      $(element).remove()
+    })
+    $indexForm.find('tr:hidden').each(function(index,element) {
+      $(element).show()
+      })
+  }
+
+   var handleQuickCancel = function(formRow) {
+
+      formRow.find('input[type=button][value=Cancel]').click(function(){
+        
+      resetIndex();
+    })
+   }
+   var handleQuickSubmit = function(formRow,catItem) {
+
+      formRow.find('input[type=button][value=Submit]').click(function(){
+        id = formRow.attr('id').split('-')[1]
+        var url = '/admin/categories/' + id + ".json"
+
+
+        cname = formRow.find('input[name=category_name]').attr('value')
+        sd = formRow.find('input[name=category_short_description]').attr('value')
+        //data[$('meta[name=csrf-param]').attr('content')] = $('meta[name=csrf-token]').attr('content')
+
+
+
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data: {_method:'PUT',category:{short_description:sd,name:cname}},
+          success: function(data) {
+            resetIndex();
+            html = data.html
+            catItem.replaceWith(html);
+            },
+          dataType: 'json'
+        });
+
+      })
+
+   }  
+   var createQuickForm = function($catItem) {
+    $catItem.hide()
+     var $quickForm = $('#quick-edit-form tr')
+    id = 'edit-' + $catItem.find('.data .id').text()
+    name = $catItem.find('.data .name').text()
+    shortDescription = $catItem.find('.data .short-description').text()
+    console.log($quickForm);
+    $qclone = $quickForm.clone().attr('id',id);
+    $qclone.insertAfter($catItem);
+    handleQuickCancel($qclone)
+    
+    $qclone.find('input[name=category_name]').attr('value',name)
+    $qclone.find('input[name=category_short_description]').attr('value',shortDescription)
+    handleQuickSubmit($qclone,$catItem)
+    return $qclone
+   }
+
+
+  var handleQuickEditClick = function() {
+
+    
+    $('#map').on('click','.quick-edit',function(event) {
+      event.preventDefault() 
+
+      resetIndex();
+      $catItem = $(this).closest('.cat-item')
+      $form = createQuickForm($catItem)  
       
     })
   }  
   
-  handleSubmit = function() {
+  var handleSubmit = function() {
     $('#create_category_form')
     .bind("ajax:beforeSend", function(evt, xhr, settings){
       var $submitButton = $(this).find('input[name="commit"]');
@@ -47,9 +156,7 @@ myadmin.cat=function() {
         $(html).insertAfter($('#map').find('tr#tag-' + popt.attr('value')))
         $('<option></option>').html(Array(level+1).join('-')+name).attr('value',id).insertAfter(popt)
       }
-//      for (i=0; i < 1000; i++) {
- //       console.log(i);
-  //      }
+
     })
     .bind('ajax:complete', function(evt, xhr, status){
      
@@ -99,6 +206,8 @@ myadmin.cat=function() {
 }();
 
 $(document).ready(function() {
+
   
   myadmin.cat.init();
+  myadmin.selectCat.init();
 });

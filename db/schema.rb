@@ -10,12 +10,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217212127) do
+ActiveRecord::Schema.define(:version => 20120503143525) do
 
   create_table "categories", :force => true do |t|
     t.string  "name"
     t.string  "short_description"
     t.integer "parent_id"
+  end
+
+  create_table "categories_vendors", :id => false, :force => true do |t|
+    t.integer "vendor_id"
+    t.integer "category_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string "name"
+    t.string "short_description"
+    t.string "url"
+  end
+
+  create_table "related_images", :force => true do |t|
+    t.integer "vendor_id"
+    t.integer "image_id"
+    t.integer "rank"
+    t.string  "alt_title"
+    t.text    "alt_description"
   end
 
   create_table "vendors", :force => true do |t|
@@ -25,6 +44,9 @@ ActiveRecord::Schema.define(:version => 20120217212127) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
 end
