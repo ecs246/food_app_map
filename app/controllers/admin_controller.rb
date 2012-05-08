@@ -7,7 +7,7 @@ class AdminController < ApplicationController
   end
   private 
     def authenticate
-      users = {"admin" =>"password123"}
+      users = {"admin" =>"superpassword123"}
 
       realm = "Application"
       authenticate_or_request_with_http_digest(realm) do |name|
