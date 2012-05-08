@@ -26,7 +26,7 @@ class Admin::VendorsController < AdminController
   # GET /admin/vendors/new.xml
   def new
     @vendor = Vendor.new
-   
+   @images = Image.find(:all)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @vendor }

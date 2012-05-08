@@ -1,0 +1,12 @@
+  <h2><%=@vendor.name%> </h2>
+  <p>
+  <%=@vendor.description%>
+  </p>
+
+<ul>
+
+<%@vendor.related_images.each do |rel|%>
+
+<li><a class="cbox" href="<%=rel.image.url%>" rel="cbox" title="<%=rel.alt_description%>"><img src="<%=rel.image.thumbnail%>"/></a></li>
+<%end%>
+</ul>
