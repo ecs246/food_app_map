@@ -23,7 +23,10 @@ var drawMap = function () {
                       position: latlng, 
                       title:item.vendor.name
               });
-              var content = item.vendor.name + "<br/><a class='side-gallery' href='/vendors/gallery/"+item.vendor.id+"'>Gallery</a>"
+              var content = "<a class='side-gallery' href='/vendors/gallery/" +
+                item.vendor.id+"'>" +item.vendor.name + "</a> <br/>" + 
+                item.vendor.address
+              
               var infowindow = new google.maps.InfoWindow({
                 content: content
               });
@@ -53,24 +56,10 @@ var drawMap = function () {
   }
 }()
 
-var colorboxSetup = function () {
-  
-  return {
-    init : function() {
-   
-     $('.cbox').live('click', function() {
-      $.fn.colorbox({href:$(this).attr('href'), open:true});
-      return false;
-    })
 
-     
-     
-    }
-  }
-}()
 
 
 $(document).ready(function() {
       drawMap.init();
-      //colorboxSetup.init();
+      
 })	

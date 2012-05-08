@@ -104,7 +104,6 @@ myadmin.cat=function() {
     id = 'edit-' + $catItem.find('.data .id').text()
     name = $catItem.find('.data .name').text()
     shortDescription = $catItem.find('.data .short-description').text()
-    console.log($quickForm);
     $qclone = $quickForm.clone().attr('id',id);
     $qclone.insertAfter($catItem);
     handleQuickCancel($qclone)
@@ -152,7 +151,6 @@ myadmin.cat=function() {
         alert("Problem with id");
       } else {
         popt = $('#category_parent_id option:selected')
-        console.log($('#map').find('tr #id-' + popt.attr('value')))
         $(html).insertAfter($('#map').find('tr#tag-' + popt.attr('value')))
         $('<option></option>').html(Array(level+1).join('-')+name).attr('value',id).insertAfter(popt)
       }
@@ -172,7 +170,6 @@ myadmin.cat=function() {
             var $form = $(this),
           errors,
           errorText;
-          console.log(xhr.responseText)
       try {
         // Populate errorText with the comment errors
         errors = $.parseJSON(xhr.responseText);
