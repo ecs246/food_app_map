@@ -3,29 +3,35 @@
 <table>
   <tr>
     <th></th>
-    <th></th>
-    <th></th>
+    <th>Image Name</th>
+    <th>Form</th>
   </tr>
 
 <% @flick.display_each_item do |image| %>
   
   <tr>
-    <td><img src="<%= image.attributes['url_t'] %>"/></td>
+    <td><a class="big-image" href="<%= image.attributes['url_l'] %>"><img src="<%= image.attributes['url_t'] %>"/></a></td>
     <td><%=image.attributes['title']%></td>
     <td><form class="image-utility-form" action="/admin/images.json" data-remote="true" method="post">
-       Name <input type="text" name="image[name]"/>
-       Short Description <input type="text" name="image[short_description]"/>
+        <div>
+        <label>Name</label> <input type="text" name="image[name]"/>
+        </div>
+        <div>
+       <label>Short Description</label> <input type="text" name="image[short_description]"/>
+        </div>
        <input type="hidden" name="image[url]" value="<%=image.attributes['url_l']%>"/>
        <input type="hidden" name="image[thumbnail]" value="<%=image.attributes['url_t']%>"/>
-
-       <input type="submit" value="Add to Image Index"/>
+       <input type="submit" class="ym-button" value="Add to Image Index"/>
+        
       </form>
     </td>
 
 </td>
   </tr>
 <% end %>
+ 
 </table>
+<%=@flick.get_pagination_html %>
 
 <br />
 

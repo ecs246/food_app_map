@@ -7,7 +7,7 @@ class Admin::ImagesController < AdminController
       @images = Image.all
     else
       search = "%#{params[:search]}%"
-      @images = Image.find(:all,:conditions=>['name like ?',search])
+      @images = Image.find(:all,:conditions=>['lower(name) like ?',search.downcase])
     end  
     respond_to do |format|
       format.html # index.html.erb

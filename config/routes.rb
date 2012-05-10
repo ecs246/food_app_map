@@ -13,7 +13,7 @@ FoodMapApp::Application.routes.draw do
   get '/admin/related_images/show_form_item/:id', :to => 'Admin::Related_images#show_form_item'
   get '/vendors/index'
   get 'vendors/gallery/:id', :to => 'Vendors#gallery'
-  
+  get '/admin/related_images/test_test_form_item'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

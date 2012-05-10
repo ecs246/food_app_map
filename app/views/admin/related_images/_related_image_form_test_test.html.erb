@@ -1,0 +1,29 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+<li>
+
+<%form_for [:admin,vendor] do |f0|%> 
+      <%=f0.text_field :name%>
+  <%f0.fields_for :related_images do |f|%>
+  <div class="related-input">
+    <%=f.hidden_field :_destroy%>
+    <%=f.hidden_field :id%>
+    <%=f.hidden_field :image_id%>
+    <%=f.hidden_field :rank%>
+    <%= f.label :alt_title,'Title' %><br />
+    <%= f.text_field :alt_title %>
+    <%= f.label :alt_description,'Caption' %><br />
+    <%= f.text_field :alt_description %>
+    
+  </div>
+  <%end%>
+
+  <%end%>
+  
+  <a href="#" class="image-delete">Delete</a>
+  <div class="clear">
+  </div>
+</li>
+

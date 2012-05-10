@@ -44,7 +44,7 @@ var drawMap = function () {
    init: function() {
     var latlng =  new google.maps.LatLng(40.755547,-73.9839);
     var myOptions = { 
-      zoom: 13, 
+      zoom: 12, 
       center: latlng, 
       mapTypeId: google.maps.MapTypeId.ROADMAP 
     };

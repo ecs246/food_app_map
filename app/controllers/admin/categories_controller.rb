@@ -23,7 +23,10 @@ class Admin::CategoriesController < AdminController
     respond_to do |format|
       format.html do 
         if request.xhr?
-          render
+            render :json => {
+              :html=>render_to_string(:partial => "item", :locals => { :level => @category.parents_array.size, :category=>@category }),
+              :category=>@category.attributes
+            }
         else
           
           #render :inline  => {:html=>varb}.to_json
@@ -93,7 +96,7 @@ class Admin::CategoriesController < AdminController
         
         level =  @category.parents_array.size
         varb = render_to_string :partial => "item.html.erb",:locals => { :level => level, :category=>@category }
-        #varb = ""
+       
           render :json => {
               :html=>varb,
               :category=>@category.attributes,

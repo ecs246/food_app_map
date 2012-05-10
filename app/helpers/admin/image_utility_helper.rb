@@ -4,7 +4,12 @@ require "net/http"
 require "uri"
 require "digest/md5"
 require "rexml/document"
+ def helper
+    uri = request.env['PATH_INFO']
 
+  end
+  
+  
   class XMLFlickrObj 
     API_KEY = '8f7cc5f3e11452db7f1aa51361c1e04a'
     METHOD = 'flickr.people.getPublicPhotos'
@@ -30,6 +35,27 @@ require "rexml/document"
         yield(el)
       end
     end
+    
+       
+    def get_pagination_html 
+      #uri = request.env['PATH_INFO']
+      puts caller.methods;
+      #uri = helper
+      #html = ""
+=begin      
+      for i in 1..@total_pages do
+        if (@current_page != i)
+          html << "<a href='#{uri}'>#{i}</a>"
+        else 
+          html << i
+        end
+        
+    
+      end
+      html
+=end      
+   end    
+    
     private 
     def get_flickr_xml()
      request ="http://api.flickr.com/services/rest/?method=#{METHOD}&user_id=#{USER_ID}&extras=url_t,url_l&api_key=#{API_KEY}"
@@ -46,8 +72,9 @@ require "rexml/document"
    
      
     end
+ 
   end
   
-
+ 
   
 end

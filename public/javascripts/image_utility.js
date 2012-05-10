@@ -27,6 +27,6 @@ myadmin.imageUtility = function () {
 
 $(document).ready(function() {
   
-  
+  $(".big-image").colorbox();
   myadmin.imageUtility.init();
 });

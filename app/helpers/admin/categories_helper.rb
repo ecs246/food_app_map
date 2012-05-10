@@ -1,35 +1,5 @@
 module Admin::CategoriesHelper
-  
-  #####################deprecated #######################################
-  
-  def sub_process_category_dep(pcategory,level=1,&blocko)
-      str = "" 
-      pcategory.sub_categories.each do |category|
-        #str << blocko.call(category,level)
-        str << capture(category,level,&blocko)
-        str << sub_process_category(category,level+1,&blocko)
-      end
-      raw(str)
-  end
-  def process_category_dep(pcategory,&blocko)
-    str = ""
-     
-    str =  capture(pcategory,0,&blocko)
-    str << sub_process_category(pcategory,&blocko)
-    raw(str)
-  end 
-  
-    def get_cat_opt(category_id) 
-      str = ""
-      category = Category.find(category_id)
-      str = process_category(category) do |cat,level|
-        raw(%(<option value="#{cat.id}"> #{"-"*level} #{cat.name}</option>))
-      end 
-      
-      return str 
-  end
-  
-##############################################################################  
+
   def process_category(pcategory,&blocko)
     str = ""
     pcategory.leveled_descendant_array.each do |lis|

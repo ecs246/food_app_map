@@ -1,12 +1,12 @@
 <h1>New category</h1>
 
-<div class="category wrap">
-  <div class="left">
-    <%= render :partial=>'form' ,:locals=>{:remote=>true,:format=>'json'}%>
-    <%= link_to 'Back', admin_categories_path %>
-
+<div class="ym-grid linearize-level-2">
+  <div class="ym-g40 ym-gl">
+    <div class="ym-gbox-left">
+      <%= render :partial=>'form' ,:locals=>{:remote=>true,:format=>'json'}%>
+    </div> 
   </div>
-  <div class="right">
+  <div class="ym-g60 ym-gr">
     <form id="index-form">
     <table id="map">
       <tr id="tag-">
@@ -38,7 +38,7 @@
           <br/>
           <label for="category_short_description">Short Description</label><input type="text" name="category_short_description">
           <br />
-          <input type="button" value="Cancel"> <input type="button" value="Submit">
+          <input class="ym-button" type="button" value="Cancel"> <input class="ym-button" type="button" value="Submit">
         </td> 
       </tr>
       </table>

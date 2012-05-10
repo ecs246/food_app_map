@@ -107,6 +107,8 @@ myadmin.gallery = function () {
 
 $(document).ready(function() {
   
-  
+ 
+    $( "#tabs" ).tabs();
+ 
   myadmin.gallery.init();
 });

@@ -1,31 +1,4 @@
-.headform {
-  display:inline;
-}
 
-select {
-  font-family:courier;
-}
-
-.nested-item {
-  padding-left: 1em;
-}
-
-
-
-.category .left {
-  float:left;
-  width:300px;
-}
-
-
-.category .right {
-  float: left;
- 
-}
-
-.wrap {
-  width:760px;
-}
 
 .validation-error { 
   color: red;
@@ -51,7 +24,7 @@ select {
   width:300px;
   overflow: scroll;
   border-style:solid;
-  border-width:5px;
+  border-width:1px;
   list-style-type:none;
   margin:0px;
   padding:5px;
@@ -62,7 +35,8 @@ select {
   width:300px;
   overflow: scroll;
   border-style:solid; 
-  border-width:5px;
+  border-width:1px;
+  padding:10px;
 }
 
 
@@ -74,7 +48,8 @@ select {
   width:550px;
   height:500px;
   border-style:solid; 
-  border-width:5px;
+  border-width:1px;
+  padding:15px;
   overflow:auto;
 }
 
@@ -82,6 +57,7 @@ select {
   width:300px;
   height:400px;
   overflow:auto;
+  padding:10px;
 }
 
 #selected-images li {
@@ -120,4 +96,18 @@ select {
 
 #search-cell {
   vertical-align:top;
+}
+
+h1 {
+    font-size: 200%;
+    line-height: 1.2em;
+    margin: 0.6em 0 0;
+}
+
+.logo {
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 400;
+    font-size: 350%; 
+    line-height: 1.2em;
+    margin: 0.6em 0 0;
 }

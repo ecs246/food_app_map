@@ -22,4 +22,11 @@ class Admin::RelatedImagesController < AdminController
     end    
   end
   
+  def test_test_form_item 
+    #need to redo the code above to populate and clone hidden related_images instead 
+    #of ajax getting the fragment. 
+    @vendor = Vendor.find(1)
+    render :partial => "/admin/related_images/related_image_form_test_test.html", 
+                :locals => { :vendor=>@vendor }
+  end
 end

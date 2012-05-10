@@ -2,25 +2,15 @@ var myadmin = {};
 
 
 myadmin.nav = function() {
-  var changeElementBehaviour = function () {
-    $('.headform select').change(function() {
-        $(".headform select option:selected").each(function () {
-          //alert($(this).val());
-            $(this).val() != "" ? location.href = $(this).val() : "";
-            
-        });
-    })
-  }
+ 
   var defaultElementBehaviour = function () {
-
-    $(".headform select option[value='"+window.location.pathname+"']").attr("selected", true);
-
+   loc =  window.location.pathname
+   $("nav li a[href='"+loc+"']").parent().attr('class','active')
   }
   return { 
     init : function () {
       
       defaultElementBehaviour();
-      changeElementBehaviour();
     }  
   }
 }();
