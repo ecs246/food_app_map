@@ -99,7 +99,7 @@
         <input type="text" value="" name="image_search"/>
         <input type="button" value="Search" />
         <ul id="image-results" class="connectedSortable">
-          <%@images.each do |image|%>
+          <%Image.find(:all,:order => 'id DESC').each do |image|%>
           <li><img src="<%=image.thumbnail%>"><%=image.name%><div class="id hidden"><%=image.id%></div></li>
           <%end%>
           

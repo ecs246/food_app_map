@@ -26,7 +26,6 @@ class Admin::VendorsController < AdminController
   # GET /admin/vendors/new.xml
   def new
     @vendor = Vendor.new
-   @images = Image.find(:all,:order => 'id DESC')
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @vendor }
@@ -36,7 +35,6 @@ class Admin::VendorsController < AdminController
   # GET /admin/vendors/1/edit
   def edit
     @vendor = Vendor.includes([:related_images,:images]).find(params[:id])
-    @images = Image.find(:all,:order => 'id DESC')
   end
 
   # POST /admin/vendors
@@ -59,7 +57,7 @@ class Admin::VendorsController < AdminController
   # PUT /admin/vendors/1.xml
   def update
     @vendor = Vendor.find(params[:id])
-  
+
     respond_to do |format|
       if @vendor.update_attributes(params[:vendor])
         format.html { redirect_to([:admin,@vendor] ,:notice => 'Vendor was successfully updated.') }
