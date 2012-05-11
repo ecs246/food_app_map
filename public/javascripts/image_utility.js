@@ -6,11 +6,11 @@ myadmin.imageUtility = function () {
 
     })
     .bind("ajax:success",function(evt,data,status,xhr) {
-    
+        alert("Congrats. Successfully submitted")
+
     })
     .bind('ajax:complete', function(evt, xhr, status){
       
-      alert("Congrats. Successfully submitted")
     })
     .bind("ajax:error", function(evt, xhr, status, error){
         alert("There was an error with the submit");
