@@ -1,5 +1,5 @@
 class Vendor < ActiveRecord::Base
-  validates :name, :presence => true
+  validates :name, :address, :latitude, :longitude, :presence => true
 
   has_and_belongs_to_many :categories
   has_many :related_images, :dependent => :destroy, :order => 'rank'

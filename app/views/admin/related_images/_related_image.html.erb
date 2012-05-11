@@ -3,18 +3,29 @@
 # and open the template in the editor.
 %>
 <li>
-  <img class="related-img" src="<%=related.image.thumbnail%>" />
-  <div class="related-input">
-    <input type="hidden" name="vendor[related_images_attributes][][_destroy]" value=""/>  
-    <input type="hidden" name="vendor[related_images_attributes][][id]" value="<%=related.id%>"/>  
-    <input type="hidden" name="vendor[related_images_attributes][][image_id]" value="<%=related.image_id%>"/>  
-    <input type="hidden" name="vendor[related_images_attributes][][rank]" value="<%=related.rank%>"/>  
-  Title<input size="50" type="text" value="<%=related.alt_title%>" name="vendor[related_images_attributes][][alt_title]"/>
+  <div class="ym-column">
+    <div class="ym-col1">
+      <div class="ym-cbox">
+      <img class="related-img" src="<%=related.image.thumbnail%>" />
+      </div>
+    </div>  
+      <div class="ym-col2">
+        <div class="ym-cbox">
+      <a href="#" class="image-delete">Delete</a>
+        </div>
+      </div>
+      <div class="related-input ym-col3">
+        <div class="ym-cbox">
+        <input type="hidden" name="vendor[related_images_attributes][][_destroy]" value=""/>  
+        <input type="hidden" name="vendor[related_images_attributes][][id]" value="<%=related.id%>"/>  
+        <input type="hidden" name="vendor[related_images_attributes][][image_id]" value="<%=related.image_id%>"/>  
+        <input type="hidden" name="vendor[related_images_attributes][][rank]" value="<%=related.rank%>"/>  
+      Title<input size="50" type="text" value="<%=related.alt_title%>" name="vendor[related_images_attributes][][alt_title]"/>
+
+      Caption<input size="50" type="text" value="<%=related.alt_description%>" name="vendor[related_images_attributes][][alt_description]"/>
+      </div>
+      </div>   
+  </div>
  
-  Caption<input size="50" type="text" value="<%=related.alt_description%>" name="vendor[related_images_attributes][][alt_description]"/>
-  </div>
-  <a href="#" class="image-delete">Delete</a>
-  <div class="clear">
-  </div>
 </li>
 

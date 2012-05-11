@@ -3,9 +3,28 @@
     <td>
       <div id="map_canvas" style="width:700px; height:600px"></div> 
     </td>
-    <td valign="top">
+    <td valign="top" class="col-right">
       <div id="img-display">
         
+      </div>
+      <div id="last5">
+        <h3>Last 5 entered</h3>
+      <ul>
+      <%@last5Vendor.each do |vendor|%>
+        <li><a id="<%=vendor.id%>" href="#" class="vendor-click"><%=vendor.name%></a></li>
+      
+      <%end%>
+      </ul>
+      </div>
+      <br/>
+      <div id="categories">
+        <h3>Categories</h3>
+        <ul>
+          <%@cats.each do |category|%>
+            <li><a href="#" id="<%=category.id%>" class="category-click"><%=category.name%></a></li>
+          <%end%>
+            <li><a href="#" id="all" class="category-click">All</a></li>
+        </ul>  
       </div>  
     </td>  
   </tr>

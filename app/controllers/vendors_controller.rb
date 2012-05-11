@@ -18,4 +18,12 @@ class VendorsController < ApplicationController
     #@related_images = @vendor.related_images
   end
   
+  def show
+    @vendors = Vendor.find(params[:id])
+    respond_to do |format|
+      format.json do 
+            render :json => @vendors.to_json()
+      end
+    end
+  end
 end

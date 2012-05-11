@@ -3,6 +3,8 @@
 <head>
   <title><%=@title%></title>
   <!--%= stylesheet_link_tag :all %-->
+  <%= stylesheet_link_tag '/jquery-ui-1.8.16.custom/css/ui-lightness/jquery-ui-1.8.20.custom.css', :media => 'screen' %>
+
   <%= stylesheet_link_tag 'flexible-grids.css', :media => 'screen' %>
   <%= stylesheet_link_tag 'display', :media => 'screen' %>
   <%= stylesheet_link_tag 'colorbox', :media => 'screen' %>
@@ -39,7 +41,7 @@
 </nav>
 <div id="main">
  <div class="ym-wrapper">
-    <%= yield %>
+    <%=yield %>
  </div>
 </div>
 <footer>

@@ -63,7 +63,7 @@
 #selected-images li {
   
 }
-.related-img {
+/*.related-img {
   float:left;
 
   margin:4px;
@@ -72,6 +72,7 @@
   float:left;
  
 }
+*/
 .clear {clear:both;}
 
 #selected-div {
@@ -111,3 +112,11 @@ h1 {
     line-height: 1.2em;
     margin: 0.6em 0 0;
 }
+.inline-edit label, .inline-edit input, .image-utility-form label, .image-utility-form input {
+  display:inline-block;
+}
+
+.inline-edit label, .image-utility-form label {
+    width:150px;
+}
+
