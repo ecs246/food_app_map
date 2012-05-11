@@ -4,7 +4,7 @@ class Admin::VendorsController < AdminController
   def index
     @vendors = Vendor.all
 
-    respond_to do |format|
+    respond_to do  |format|
       format.html # index.html.erb
       format.xml  { render :xml => @vendors }
     end
@@ -26,7 +26,7 @@ class Admin::VendorsController < AdminController
   # GET /admin/vendors/new.xml
   def new
     @vendor = Vendor.new
-   @images = Image.find(:all)
+   @images = Image.find(:all,:order => 'id DESC')
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @vendor }
@@ -36,7 +36,7 @@ class Admin::VendorsController < AdminController
   # GET /admin/vendors/1/edit
   def edit
     @vendor = Vendor.includes([:related_images,:images]).find(params[:id])
-    @images = Image.find(:all)
+    @images = Image.find(:all,:order => 'id DESC')
   end
 
   # POST /admin/vendors
