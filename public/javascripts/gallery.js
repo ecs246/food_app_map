@@ -27,7 +27,7 @@ myadmin.gallery = function () {
       })
   }
   var handleSubmit = function () {
-      $('.edit_vendor').submit(function() {
+      $('form[name=vend-form]').submit(function() {
           var count = 0;
           $('input[name*=rank]').each(function(index,el) {
               $(el).attr('value',count)

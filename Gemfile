@@ -5,12 +5,12 @@ gem "rake", "0.8.7"
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+#gem 'pg'
 
 
 
- #gem 'sqlite3'
- #gem "sqlite3-ruby", "~> 1.3.0", :require => "sqlite3"
+gem 'sqlite3'
+#gem "sqlite3-ruby", "~> 1.3.0", :require => "sqlite3"
 
 
 
